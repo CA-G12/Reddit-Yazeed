@@ -1,6 +1,6 @@
 BEGIN;
 
-DROP TABLE posts, users, comments, votes IF EXISTS CASCADE; 
+DROP TABLE IF EXISTS  posts, users, comments, votes CASCADE; 
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
@@ -47,8 +47,8 @@ COMMIT;
 
 INSERT INTO users (username, email, password, avatar_url) 
 VALUES
-('ysalem', 'yazeed.salem.it@hotmail.com', '123456',"https://usveteransmagazine.com/wp-content/webp-express/webp-images/uploads/2017/10/Interview-Tips-1.jpg.webp"),
-('sdm91', 'sdm91@hotmail.com', '123456',"https://usveteransmagazine.com/wp-content/webp-express/webp-images/uploads/2017/10/Interview-Tips-1.jpg.webp");
+('ysalem', 'yazeed.salem.it@hotmail.com', '123456','https://usveteransmagazine.com/wp-content/webp-express/webp-images/uploads/2017/10/Interview-Tips-1.jpg.webp'),
+('sdm91', 'sdm91@hotmail.com', '123456','https://usveteransmagazine.com/wp-content/webp-express/webp-images/uploads/2017/10/Interview-Tips-1.jpg.webp');
 
 
 INSERT INTO posts (title, content, type, category, image_url, user_id) 
@@ -78,7 +78,7 @@ VALUES
   'music',
   NULL, 
   1
-),
+);
 
 INSERT INTO comments (content, post_id, user_id)
 VALUES 
@@ -86,7 +86,7 @@ VALUES
 ('Well done for this video, I love Mishari AlAfasi, he has a great voice', 3, 1),
 ('this is my second comment', 1, 2),
 ('Thanks for this post', 2, 2),
-('Great video', 3, 2),
+('Great video', 3, 2);
 
 INSERT INTO votes (type, post_id, user_id)
 VALUES 
@@ -94,5 +94,5 @@ VALUES
 (1, 3, 1),
 (-1, 1, 2),
 (1, 2, 2),
-(-1, 3, 2)
+(-1, 3, 2);
 
