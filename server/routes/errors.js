@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 router.use((req, res) => {
-  res.status(400).send({ message: 'Page not found', status: 404 });
+  res.status(404).send({ message: 'Page not found', status: 404 });
 });
 
 /* eslint-disable no-unused-vars */

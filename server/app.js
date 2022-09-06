@@ -4,7 +4,15 @@ const express = require('express');
 const compression = require('compression');
 const { env } = require('process');
 const cookieParser = require('cookie-parser');
-const { errorRouter } = require('./routes');
+const morgan = require('morgan');
+const {
+  errorRouter,
+  postsRouter,
+  commentsRouter,
+  usersRouter,
+  pagesRouter,
+  votesRouter,
+} = require('./routes');
 
 const app = express();
 app.set('PORT', env.PORT || 3000);
@@ -14,9 +22,16 @@ app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+app.use(morgan('tiny'));
 app.use(express.static(join(__dirname, '..', 'public')));
 
-app.use(errorRouter);
+app.use(
+  postsRouter,
+  commentsRouter,
+  usersRouter,
+  pagesRouter,
+  votesRouter,
+  errorRouter,
+);
 
 module.exports = app;
