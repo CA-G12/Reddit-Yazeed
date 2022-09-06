@@ -13,6 +13,7 @@ const {
   pagesRouter,
   votesRouter,
 } = require('./routes');
+const { json } = require('express');
 
 const app = express();
 app.set('PORT', env.PORT || 3000);
@@ -27,11 +28,20 @@ app.use(express.static(join(__dirname, '..', 'public')));
 
 app.use(
   postsRouter,
-  commentsRouter,
-  usersRouter,
-  pagesRouter,
-  votesRouter,
+  // commentsRouter,
+  // usersRouter,
+  // pagesRouter,
+  // votesRouter,
   errorRouter,
 );
+
+app.use((req, res) => {
+  res.status(404).send({ message: 'Page not found', status: 404 });
+});
+
+/* eslint-disable no-unused-vars */
+app.use((err, req, res, next) => {
+  res.status(err.status || 500).json(err);
+});
 
 module.exports = app;

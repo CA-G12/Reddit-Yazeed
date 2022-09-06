@@ -6,7 +6,7 @@ router.use((req, res) => {
 
 /* eslint-disable no-unused-vars */
 router.use((err, req, res, next) => {
-  res.status(500).send({ message: 'Internal Server Error', status: err.status });
+  res.status(err.status).send(err);
 });
 
 module.exports = router;
