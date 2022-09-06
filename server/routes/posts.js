@@ -5,7 +5,7 @@ const { postsControllers } = require('../controllers');
 router.get('/api/v1/posts', postsControllers.allPosts);
 router.get('/api/v1/posts/hot', postsControllers.allPostsOrderedByVote);
 router.get('/api/v1/posts/new', postsControllers.allPostsOrderedByDate);
-router.post('/api/v1/posts/search', postsControllers.searchPosts);
+router.get('/api/v1/posts/search', postsControllers.searchPosts);
 
 router.get('/api/v1/user/:username/posts', postsControllers.userPosts);
 router.post('/api/v1/submit', postsControllers.addPost);
