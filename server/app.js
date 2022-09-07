@@ -28,7 +28,7 @@ app.use(express.static(join(__dirname, '..', 'public')));
 
 app.use(
   postsRouter,
-  // commentsRouter,
+  commentsRouter,
   // usersRouter,
   // pagesRouter,
   // votesRouter,

@@ -1,3 +1,4 @@
 const postsQueries = require('./postsQueries');
+const commentsQueries = require('./commentsQueries');
 
-module.exports = { postsQueries };
+module.exports = { postsQueries, commentsQueries };
