@@ -1,0 +1,121 @@
+/* Start Header */
+.nav {
+  display: flex;
+  align-items: center;
+  padding: 0 5rem;
+  height: 6rem;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+}
+
+.logo svg.logo-img {
+  width: 4rem;
+  margin-right: 10px;
+}
+
+.logo svg.logo-text {
+  width: 5rem;
+}
+
+.search-bar {
+  position: relative;
+  flex: 1;
+  margin: 0 2rem;
+}
+
+.search-bar form {
+  width: 50%;
+  position: relative;
+  margin: auto;
+  min-width: 30rem;
+}
+
+.search-bar form input {
+  width: 100%;
+  padding-right: 4.6rem;
+}
+
+.search-bar i {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.user-controls {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.user-controls>* {
+  margin-left: 1rem;
+}
+
+.user-controls .profile-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 1rem 1.5rem;
+  color: black;
+}
+
+.user-controls .profile-link:hover {
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.user-controls .profile-link:active,
+.user-controls .profile-link:visited {
+  color: black;
+}
+
+.user-controls .profile-link .profile-img {
+  width: 3rem;
+}
+
+.user-controls .profile-link .profile-img i {
+  font-size: 2.8rem;
+}
+
+.user-controls .profile-link>* {
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 991px) {
+  .user-controls button {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    padding: 0 1rem;
+  }
+
+  .search-bar {
+    margin: 0 5px;
+  }
+
+  .search-bar form {
+    min-width: 15rem;
+  }
+
+  .user-controls .profile-link {
+    padding: 0.6rem;
+  }
+
+  .user-controls .logo {
+    display: none;
+  }
+}
+
+/* End Header */

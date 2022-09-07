@@ -1,0 +1,85 @@
+/* Start Modal Style */
+
+.modal {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modal .close {
+  font-size: 3rem;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  transition: 0.3s;
+  color: black;
+}
+
+.modal .close:hover,
+.modal .close:active {
+  color: rgb(209, 15, 15);
+}
+
+
+.modal-content {
+  background-color: #fff;
+  display: flex;
+  position: fixed;
+  width: 70rem;
+  max-width: 100%;
+  border-radius: 5px;
+  height: 100%;
+  z-index: 100;
+}
+
+.modal .side-image {
+  width: 20rem;
+  object-fit: cover;
+}
+
+.modal .forms h2 {
+  margin-bottom: 2rem;
+  font-size: 3rem;
+}
+
+.modal .forms {
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.modal .forms>* {
+  width: 70%;
+}
+
+.modal .form-group {
+  margin-bottom: 1rem;
+}
+
+.modal input {
+  border-radius: 20px;
+  font-size: 1.4rem;
+  padding: 1.2rem 1.8rem;
+  margin-bottom: 0.4rem;
+  width: 100%;
+}
+
+.error {
+  font-size: 1.4rem;
+  color: rgb(209, 15, 15);
+}
+
+.modal button {
+  margin: 2rem 0 1rem;
+}
+
+/* End Modal Style */
