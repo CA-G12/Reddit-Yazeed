@@ -2,6 +2,7 @@ const connection = require('../../config/connection');
 
 const allPostsOrderedByDateQuery = () => {
   const sql = `SELECT 
+      p.id,
       p.title,
       p.content,
       p.type,

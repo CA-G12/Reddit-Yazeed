@@ -1,0 +1,33 @@
+/* Start Forms styles */
+:root {
+  --blue-color: #0079d3;
+}
+
+input {
+  padding: 0.8rem 1.2rem;
+  font-size: 1.6rem;
+  font-family: inherit;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  border-radius: 2rem;
+  height: 3rem;
+  width: 12rem;
+  color: white;
+  background-color: var(--blue-color);
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0160a8;
+}
+
+.error {
+  display: none;
+  margin-left: 1rem;
+}
+
+/* End Forms styles */
