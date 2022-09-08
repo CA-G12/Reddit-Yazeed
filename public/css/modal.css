@@ -65,13 +65,34 @@
   margin-bottom: 1rem;
 }
 
-.modal input {
+.modal input,
+.modal select,
+.modal textarea {
   border-radius: 20px;
   font-size: 1.4rem;
   padding: 1.2rem 1.8rem;
   margin-bottom: 0.4rem;
   width: 100%;
 }
+
+.modal .submit input,
+.modal .submit select,
+.modal .submit textarea {
+  border-radius: 5px;
+}
+
+.modal .submit textarea {
+  height: 15rem;
+  resize: vertical;
+}
+
+.modal .submit button {
+  width: 20rem;
+  height: 5rem;
+  margin: 1rem 0 1rem;
+  border-radius: 5px;
+}
+
 
 .error {
   font-size: 1.4rem;

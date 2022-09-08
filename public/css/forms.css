@@ -3,12 +3,18 @@
   --blue-color: #0079d3;
 }
 
-input {
+input,
+select,
+textarea {
   padding: 0.8rem 1.2rem;
   font-size: 1.6rem;
   font-family: inherit;
   border-radius: 5px;
   border: 1px solid #ccc;
+}
+
+select option:disabled {
+  color: #555;
 }
 
 button {

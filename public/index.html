@@ -90,7 +90,7 @@
       <section class="posts-section">
         <div class="submit-post">
           <img src="./images/user_avatar.png" alt="">
-          <input type="text" class="post-submit-input" />
+          <input type="text" class="post-submit-input" placeholder="Just come here ..." />
           <a href="#"><i class="fa-solid fa-link"></i></a>
         </div>
         <div class="posts-order">
@@ -207,7 +207,7 @@
             </form>
             <p>New to Reddit? <a href="#">Sign up</a></p>
           </div>
-
+          <!-- ./login -->
           <div class="signup" style="display: none;">
             <h2>Sign Up</h2>
             <form class="form-signup" action="./index.html">
@@ -236,10 +236,58 @@
             </form>
             <p>Already a redditor? <a href="#">Log In</a></p>
           </div>
+          <!-- ./signup -->
+          <div class="submit" style="display: none;">
+            <h2>Submit Your Post</h2>
+            <form class="form-submit" action="./index.html">
+              <div class="form-group">
+                <input type="text" id="title" name="title" placeholder="What is your post title?" />
+                <span class="error hidden">Error</span>
+              </div>
+              <div class="form-group">
+                <select name="category" id="category">
+                  <option value="" selected disabled>Please select categroy:</option>
+                  <option value="all">All</option>
+                  <option value="programming">Programming</option>
+                  <option value="music">Music</option>
+                  <option value="memes">Memes</option>
+                  <option value="politics">Politics</option>
+                  <option value="news">News</option>
+                  <option value="food">Food</option>
+                  <option value="videos">Videos</option>
+                </select>
+                <span class="error hidden">Error</span>
+              </div>
+              <div class="form-group">
+                <select name="type" id="type">
+                  <option value="" selected disabled>Please select post type:</option>
+                  <option value="all">Text</option>
+                  <option value="programming">Link</option>
+                </select>
+                <span class="error hidden">Error</span>
+              </div>
+              <div class="form-group">
+                <input type="text" id="image-url" name="image-url"
+                  placeholder="You can add post image link here." />
+                <span class="error hidden">Error</span>
+              </div>
+              <div class="form-group">
+                <textarea type="content" id="content" name="content"
+                  placeholder="Write your post content here."></textarea>
+                <span class="error hidden">Error</span>
+              </div>
+              <div class="form-group">
+                <button type="submit" id="submit-btn">Submit Post</button>
+              </div>
+            </form>
+          </div>
+          <!-- ./submit -->
         </div>
-
+        <!-- ./forms -->
       </div>
+      <!-- ./modal-content -->
     </section>
+    <!-- ./modal -->
   </main>
   <!-- ./main -->
 </body>

@@ -116,6 +116,8 @@ newLink.addEventListener('click', () => {
 categoryList.forEach((categoryLink) => {
   categoryLink.addEventListener('click', (e) => {
     const category = e.target.dataset.cat;
+    categoryList.forEach((element) => element.classList.remove('active'));
+    e.target.classList.add('active');
     postFunctions.categoryPosts(category);
   });
 });
