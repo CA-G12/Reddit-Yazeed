@@ -178,6 +178,14 @@ ul {
   outline: none;
 }
 
+.submit-comment textarea.invalid {
+  border-color: rgb(180, 11, 11);
+}
+
+.submit-comment textarea.invalid::placeholder {
+  color: rgb(180, 11, 11) !important;
+}
+
 .submit-post a,
 .submit-comment a {
   width: 5rem;

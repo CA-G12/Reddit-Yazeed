@@ -1,5 +1,5 @@
 const fetchFunctions = {
-  fetchUrl (method, url, body) {
+  fetchUrl(method, url, body) {
     const config = {
       method,
       headers: {
@@ -16,6 +16,19 @@ const fetchFunctions = {
 
   fetchData(url, successCb) {
     this.fetchUrl('GET', url)
+      .then((res) => {
+        if (res.status === 404) alert(res.message);
+        else if (res.status === 500) window.location.href = '../html/500.html';
+        else if (res.message === 'No data found') {
+          successCb();
+        } else {
+          successCb(res.result);
+        }
+      });
+  },
+
+  postData(url, body, successCb) {
+    this.fetchUrl('POST', url, body)
       .then((res) => {
         if (res.status === 404) alert(res.message);
         else if (res.status === 500) window.location.href = '../html/500.html';
