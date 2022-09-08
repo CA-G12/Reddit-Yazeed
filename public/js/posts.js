@@ -42,7 +42,7 @@ const postFunctions = {
     postsDiv.innerHTML = '';
 
     posts.forEach((post) => {
-      const postItemDiv = postsDiv.createAppend('div', { className: 'post-item' });
+      const postItemDiv = postsDiv.createAppend('div', { className: 'post-item', id: post.id });
 
       // Votes
       const postVotesDiv = postItemDiv.createAppend('div', { className: 'post-votes' });
