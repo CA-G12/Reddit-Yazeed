@@ -7,7 +7,7 @@ const searchInput = document.querySelector('.search');
 function fetchPosts(url, successCb) {
   fetchUrl('GET', url)
     .then((res) => {
-      if (res.status === 400) alert(res.message);
+      if (res.status === 404) alert(res.message);
       else if (res.status === 500) window.location.href = '../html/500.html';
       else if (res.message === 'No data found') {
         successCb();
@@ -83,7 +83,7 @@ const postFunctions = {
       });
 
       commentsLink.createAppend('i', { className: 'fa-regular fa-comment' });
-      commentsLink.createAppend('span', { className: 'comments-number', textContent: post.comments });
+      commentsLink.createAppend('span', { className: 'comments-number', textContent: `${post.comments} Comments` });
 
       // Username
       const userDiv = metaDiv.createAppend('div', { className: 'user' });
@@ -116,6 +116,8 @@ newLink.addEventListener('click', () => {
 categoryList.forEach((categoryLink) => {
   categoryLink.addEventListener('click', (e) => {
     const category = e.target.dataset.cat;
+    categoryList.forEach((element) => element.classList.remove('active'));
+    e.target.classList.add('active');
     postFunctions.categoryPosts(category);
   });
 });
