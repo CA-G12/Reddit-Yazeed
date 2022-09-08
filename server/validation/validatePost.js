@@ -6,7 +6,7 @@ const validatePost = (post) => {
     title: joi.string().required().min(3),
     content: joi.string(),
     type: joi.string().valid('text', 'link').required(),
-    category: joi.string().required().valid('all', 'programming', 'music', 'movies', 'memes', 'politics', 'news'),
+    category: joi.string().required().valid('all', 'programming', 'music', 'movies', 'memes', 'politics', 'news', 'food', 'videos'),
     imageUrl: joi.string().uri(),
     userId: joi.number().required(),
   });

@@ -17,6 +17,11 @@
   <link rel="stylesheet" href="./css/posts.css">
   <link rel="stylesheet" href="./css/modal.css">
   <link rel="stylesheet" href="./css/main.css" />
+
+  <script src="./js/modal.js" defer></script>
+  <script src="./js/utils.js" defer></script>
+  <script src="./js/fetch.js" defer></script>
+  <script src="./js/posts.js" defer></script>
   <title>Reddit, Dive into anything</title>
 </head>
 
@@ -59,7 +64,7 @@
       <!-- ./logo -->
       <div class="search-bar">
         <form class="form-search">
-          <input type="text" id="search" name="search" placeholder="Search Reddit" />
+          <input type="text" id="search" class="search" name="search" placeholder="Search Reddit" />
           <i class="fa fa-search" aria-hidden="true"></i>
         </form>
       </div>
@@ -146,10 +151,11 @@
               </div>
               <!-- ./post-info -->
             </div>
-            <!-- ./post-content -->
+            <!-- ./post-details -->
           </div>
           <!-- ./post-item -->
         </div>
+        <!-- ./posts -->
       </section>
       <!-- ./posts-section -->
       <aside class="sidebar">
@@ -162,12 +168,13 @@
           </div>
           <ul>
             <li><a class="active" href="#" data-cat="all">All</a></li>
-            <li><a href="#" data-cat="music">Music</a></li>
-            <li><a href="#" data-cat="movie">Movies</a></li>
-            <li><a href="#" data-cat="food">Food</a></li>
             <li><a href="#" data-cat="programming">Programming</a></li>
-            <li><a href="#" data-cat="religion">Religion</a></li>
+            <li><a href="#" data-cat="music">Music</a></li>
+            <li><a href="#" data-cat="memes">Memes</a></li>
             <li><a href="#" data-cat="politics">Politics</a></li>
+            <li><a href="#" data-cat="news">News</a></li>
+            <li><a href="#" data-cat="food">Food</a></li>
+            <li><a href="#" data-cat="videos">Videos</a></li>
           </ul>
         </div>
         <!-- ./sidebar-wrapper -->
@@ -235,7 +242,6 @@
     </section>
   </main>
   <!-- ./main -->
-  <script src="./js/modal.js"></script>
 </body>
 
 </html>

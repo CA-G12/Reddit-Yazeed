@@ -1,6 +1,6 @@
 const connection = require('../../config/connection');
 
-const searchPosts = (title) => {
+const categoryPostsQuery = (category) => {
   const sql = {
     text: `SELECT
     p.id, 
@@ -17,12 +17,12 @@ const searchPosts = (title) => {
     FROM posts p 
     JOIN users u ON p.user_id = u.id 
     LEFT JOIN comments c ON c.post_id = p.id
-    WHERE LOWER(p.title) like LOWER($1)
+    WHERE p.category = $1
     GROUP BY p.id, u.username;
   `,
-    values: [`%${title}%`],
+    values: [category],
   };
   return connection.query(sql);
 };
 
-module.exports = searchPosts;
+module.exports = categoryPostsQuery;
