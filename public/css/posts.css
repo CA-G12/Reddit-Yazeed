@@ -6,7 +6,8 @@
   margin-bottom: 2rem;
 }
 
-.post-item a {
+.post-item a,
+.comment-item a {
   color: black;
 }
 
@@ -14,7 +15,8 @@
   max-width: 100%;
 }
 
-.post-item a:hover {
+.post-item a:hover,
+.comment-item a:hover {
   color: #555;
   text-decoration: underline;
 }
@@ -34,7 +36,7 @@
 
 
 .post-item .post-details {
-  padding: 2rem;
+  padding: 2rem 5rem 2rem 2rem;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -59,8 +61,11 @@
   margin: 0 auto 2rem;
 }
 
-.post-item .post-details .content {
+.post-item .post-details .content,
+.comment-item .comment-content {
   margin-bottom: 3rem;
+  line-height: 1.6;
+  color: #333;
 }
 
 .post-item .meta {
@@ -68,12 +73,56 @@
   margin-top: auto;
 }
 
-.post-item .meta>* {
+.post-item .meta>*,
+.comment-item .meta>* {
   margin-right: 3rem;
 }
 
-.post-item .meta i {
-  margin-right: 1rem;
+.post-item .meta i,
+.comment-item .meta i {
+  margin-right: 0.5rem;
 }
 
 /* End Post styles */
+
+
+/* Start Comment Style */
+
+.comments h3 {
+  margin: 5rem 0 3rem;
+}
+
+.comment-item {
+  background-color: white;
+  padding: 2rem 5rem 2rem 2rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.comment-item .meta {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.comment-item .user-img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  margin-right: 2rem;
+}
+
+.comment-item .user-img img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.comment-item .comment-content {
+  padding-left: 3rem;
+  border-left: 1px solid #ccc;
+  margin-left: 2rem;
+}
+
+/* End Comment Style */
