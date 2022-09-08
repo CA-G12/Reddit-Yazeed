@@ -1,37 +1,24 @@
+/* eslint-disable no-undef */
 const postsDiv = document.querySelector('.posts');
-const hotLink = document.querySelector('.posts-order .hot');
-const newLink = document.querySelector('.posts-order .new');
-const categoryList = document.querySelectorAll('.sidebar-wrapper ul a');
-const searchInput = document.querySelector('.search');
-
-function fetchPosts(url, successCb) {
-  fetchUrl('GET', url)
-    .then((res) => {
-      if (res.status === 404) alert(res.message);
-      else if (res.status === 500) window.location.href = '../html/500.html';
-      else if (res.message === 'No data found') {
-        successCb();
-      } else {
-        successCb(res.result);
-      }
-    });
-}
 
 const postFunctions = {
   allPosts() {
-    fetchPosts('/api/v1/posts', this.renderPosts);
+    fetchFunctions.fetchData('/api/v1/posts', this.renderPosts);
   },
   allPostsOrderedByVote() {
-    fetchPosts('/api/v1/posts/hot', this.renderPosts);
+    fetchFunctions.fetchData('/api/v1/posts/hot', this.renderPosts);
   },
   allPostsOrderedByDate() {
-    fetchPosts('/api/v1/posts/new', this.renderPosts);
+    fetchFunctions.fetchData('/api/v1/posts/new', this.renderPosts);
   },
   searchPostsByTitle(title) {
-    fetchPosts(`/api/v1/posts/search?title=${title}`, this.renderPosts);
+    fetchFunctions.fetchData(`/api/v1/posts/search?title=${title}`, this.renderPosts);
   },
   categoryPosts(category) {
-    fetchPosts(`/api/v1/posts/category/${category}`, this.renderPosts);
+    fetchFunctions.fetchData(`/api/v1/posts/category/${category}`, this.renderPosts);
+  },
+  singlePost(postId) {
+    fetchFunctions.fetchData(`/api/v1/posts/${postId}`, this.renderPosts);
   },
 
   renderPosts(posts) {
@@ -40,6 +27,10 @@ const postFunctions = {
       return;
     }
     postsDiv.innerHTML = '';
+
+    if (!Array.isArray(posts)) {
+      posts = [].concat(posts);
+    }
 
     posts.forEach((post) => {
       const postItemDiv = postsDiv.createAppend('div', { className: 'post-item', id: post.id });
@@ -59,10 +50,10 @@ const postFunctions = {
 
       const titleHeading = postDetails
         .createAppend('h3', { className: 'title' });
-      titleHeading.createAppend('a', { href: '#', textContent: post.title });
+      titleHeading.createAppend('a', { href: `/post/${post.id}/comments`, textContent: post.title });
 
       if (post.type === 'link') {
-        if (validateUrl (post.content)) {
+        if (validateUrl(post.content)) {
           postDetails.createAppend('a', {
             className: 'content', textContent: post.content, href: post.content, target: '_blank',
           });
@@ -79,7 +70,7 @@ const postFunctions = {
       // Comments
       const commentsDiv = metaDiv.createAppend('div', { className: 'comments' });
       const commentsLink = commentsDiv.createAppend('a', {
-        className: 'comments-link', href: '#',
+        className: 'comments-link', href: `/post/${post.id}/comments`,
       });
 
       commentsLink.createAppend('i', { className: 'fa-regular fa-comment' });
@@ -102,29 +93,3 @@ const postFunctions = {
     });
   },
 };
-
-// Render posts on widnow load
-postFunctions.allPosts();
-
-hotLink.addEventListener('click', () => {
-  postFunctions.allPostsOrderedByVote();
-});
-newLink.addEventListener('click', () => {
-  postFunctions.allPostsOrderedByDate();
-});
-
-categoryList.forEach((categoryLink) => {
-  categoryLink.addEventListener('click', (e) => {
-    const category = e.target.dataset.cat;
-    categoryList.forEach((element) => element.classList.remove('active'));
-    e.target.classList.add('active');
-    postFunctions.categoryPosts(category);
-  });
-});
-
-searchInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    postFunctions.searchPostsByTitle(e.target.value.trim());
-  }
-});

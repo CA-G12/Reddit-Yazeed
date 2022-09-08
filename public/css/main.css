@@ -143,35 +143,43 @@ ul {
 }
 
 
-.submit-post {
+.submit-post,
+.submit-comment {
   display: flex;
   background-color: #fff;
   padding: 1em 3rem;
   margin-bottom: 2rem;
 }
 
-.submit-post>* {
+.submit-post>*,
+.submit-comment>* {
   margin-left: auto;
   height: 5rem;
   width: 20rem;
   border-radius: 5px;
 }
 
-.submit-post>img {
+.submit-post>img,
+.submit-comment>img {
   width: 5rem;
   margin-right: 2rem;
 }
 
-.submit-post input {
+.submit-post input,
+.submit-comment input,
+.submit-comment textarea {
   flex: 1;
 }
 
-.submit-post input:focus {
+.submit-post input:focus,
+.submit-comment input:focus,
+.submit-comment textarea:focus {
   border: 2px solid var(--blue-color);
   outline: none;
 }
 
-.submit-post a {
+.submit-post a,
+.submit-comment a {
   width: 5rem;
   height: 5rem;
   background-color: #ddd;
@@ -181,8 +189,18 @@ ul {
   transition: 0.3s;
 }
 
-.submit-post a:hover {
+.submit-post a:hover,
+.submit-comment a:hover {
   background-color: #ccc;
+}
+
+.submit-comment textarea {
+  margin-right: 2rem;
+}
+
+.submit-comment button {
+  width: 12rem;
+  border-radius: 30px;
 }
 
 .posts-order {

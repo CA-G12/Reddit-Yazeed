@@ -6,6 +6,7 @@ const categoryPosts = require('./categoryPosts');
 const userPosts = require('./userPosts');
 const addPost = require('./addPost');
 const deletePost = require('./deletePost');
+const singlePost = require('./singlePost');
 
 module.exports = {
   allPosts,
@@ -16,4 +17,5 @@ module.exports = {
   addPost,
   deletePost,
   categoryPosts,
+  singlePost,
 };
