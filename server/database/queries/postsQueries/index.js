@@ -5,6 +5,7 @@ const allPostsOrderedByVoteQuery = require('./allPostsOrderedByVoteQuery');
 const deletePostQuery = require('./deletePostQuery');
 const userPostsQuery = require('./userPostsQuery');
 const searchPostsQuery = require('./searchPostsQuery');
+const categoryPostsQuery = require('./categoryPostsQuery');
 
 module.exports = {
   addPostQuery,
@@ -14,4 +15,5 @@ module.exports = {
   deletePostQuery,
   userPostsQuery,
   searchPostsQuery,
+  categoryPostsQuery,
 };
