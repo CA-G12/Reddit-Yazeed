@@ -53,13 +53,13 @@ submitPostBtn.addEventListener('click', (e) => {
   if (valid === true) {
     postFunctions.addPost(post)
       .then(() => { window.location.reload(); })
-      .catch((err) => displayErrors(JSON.parse(err).errors));
+      .catch((err) => displayPostErrors(JSON.parse(err).errors));
   } else {
-    displayErrors(valid);
+    displayPostErrors(valid);
   }
 });
 
-function displayErrors(errors) {
+function displayPostErrors(errors) {
   const removeQuotes = (str) => str.replaceAll('"', '');
   const titleError = titleInput.parentElement.querySelector('.error');
   const categoryError = categoryInput.parentElement.querySelector('.error');
@@ -97,17 +97,4 @@ function displayErrors(errors) {
     hideError(imageUrlInput, imageUrlError, 'valid');
   }
 }
-
-const showError = (checkedInput, messageElement, errorMessage) => {
-  messageElement.classList.remove('hidden');
-  checkedInput.classList.add('invalid');
-  messageElement.textContent = errorMessage;
-};
-
-const hideError = (checkedInput, messageElement, validMessage) => {
-  messageElement.classList.add('hidden');
-  checkedInput.classList.remove('invalid');
-  messageElement.textContent = validMessage;
-};
-
 

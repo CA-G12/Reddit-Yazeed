@@ -33,3 +33,15 @@ function validateEmail(email) {
   const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   return regex.test(email);
 }
+
+const showError = (checkedInput, messageElement, errorMessage) => {
+  messageElement.classList.remove('hidden');
+  checkedInput.classList.add('invalid');
+  messageElement.textContent = errorMessage;
+};
+
+const hideError = (checkedInput, messageElement, validMessage) => {
+  messageElement.classList.add('hidden');
+  checkedInput.classList.remove('invalid');
+  messageElement.textContent = validMessage;
+};
