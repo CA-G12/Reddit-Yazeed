@@ -1,7 +1,7 @@
 # Reddit-Yazeed
-
+--
 # Live Server [HERE](https://reddit-yazeed.herokuapp.com/)
-
+--
 
 ## Description:
 
@@ -11,6 +11,12 @@ You can visit user profiles as well to see their posts and comments.
 So give yourself a small journey through my website, I hope you like it.
 
 ---
+
+## Databae Schema 
+
+![Databae Schema](public\images\database-schema.png "Databae Schema ")
+
+--
 
 ## User Stories:
 
@@ -41,7 +47,7 @@ So give yourself a small journey through my website, I hope you like it.
         CREATE USER user_name WITH SUPERUSER PASSWORD 'password';
         ALTER DATABASE db_name OWNER TO user_name;
         ```
-    3.  Add a `.env` file and add the database's url in this format: `DB_URL = postgres://[username]:[password]@localhost:5432/[database]`.
+    3.  Add a `.env` you can see ```example.env``` to get idea of what you need to write.
     4. Copy build.sql path ```.../server/database/config/build.sql``` and run this command in terminal ```\i [build.sql path]```.
 - to open a live page from your local machine project, you can run the `npm run dev` command which will open a live server to work with.
 - Happy Coding!
