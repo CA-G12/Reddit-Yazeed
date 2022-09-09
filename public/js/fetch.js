@@ -14,29 +14,30 @@ const fetchFunctions = {
       .then((data) => data.json());
   },
 
-  fetchData(url, successCb) {
-    this.fetchUrl('GET', url)
+  getData(url) {
+    return this.fetchUrl('GET', url)
       .then((res) => {
         if (res.status === 404) alert(res.message);
         else if (res.status === 500) window.location.href = '../html/500.html';
-        else if (res.message === 'No data found') {
-          successCb();
-        } else {
-          successCb(res.result);
+        else if (res.message !== 'No data found') {
+          return res.result;
         }
+        return null;
       });
   },
 
-  postData(url, body, successCb) {
-    this.fetchUrl('POST', url, body)
+  postData(url, body) {
+    return this.fetchUrl('POST', url, body)
       .then((res) => {
         if (res.status === 404) alert(res.message);
         else if (res.status === 500) window.location.href = '../html/500.html';
+        else if (res.status === 400) throw JSON.stringify(new CustomError(res.message, res.errors));
         else if (res.message === 'No data found') {
-          successCb();
+          return null;
         } else {
-          successCb(res.result);
+          return res.result;
         }
+        return null;
       });
   },
 };
