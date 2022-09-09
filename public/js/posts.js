@@ -1,27 +1,28 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable no-undef */
 const postsDiv = document.querySelector('.posts');
 
 const postFunctions = {
   allPosts() {
-    fetchFunctions.getData('/api/v1/posts').then((res) => renderPosts(res));
+    fetchFunctions().getData('/api/v1/posts').then((res) => renderPosts(res));
   },
   allPostsOrderedByVote() {
-    fetchFunctions.getData('/api/v1/posts/hot').then((res) => renderPosts(res));
+    fetchFunctions().getData('/api/v1/posts/hot').then((res) => renderPosts(res));
   },
   allPostsOrderedByDate() {
-    fetchFunctions.getData('/api/v1/posts/new').then((res) => renderPosts(res));
+    fetchFunctions().getData('/api/v1/posts/new').then((res) => renderPosts(res));
   },
   searchPostsByTitle(title) {
-    fetchFunctions.getData(`/api/v1/posts/search?title=${title}`).then((res) => renderPosts(res));
+    fetchFunctions().getData(`/api/v1/posts/search?title=${title}`).then((res) => renderPosts(res));
   },
   categoryPosts(category) {
-    fetchFunctions.getData(`/api/v1/posts/category/${category}`).then((res) => renderPosts(res));
+    fetchFunctions().getData(`/api/v1/posts/category/${category}`).then((res) => renderPosts(res));
   },
   singlePost(postId) {
-    fetchFunctions.getData(`/api/v1/posts/${postId}`).then((res) => renderPosts(res));
+    fetchFunctions().getData(`/api/v1/posts/${postId}`).then((res) => renderPosts(res));
   },
   addPost(postObj) {
-    return fetchFunctions.postData('/api/v1/post', postObj);
+    return fetchFunctions().postData('/api/v1/post', postObj);
   },
   validatePost({
     title, content, type, category, imageUrl, userId,
@@ -35,7 +36,7 @@ const postFunctions = {
           .includes(category),
         message: 'category should not be empty',
       },
-      imageUrl: { check: validateUrl(imageUrl) || imageUrl.trim() === '', message: 'image should be a valid url' },
+      imageUrl: { check: (validateUrl(imageUrl) && validateImageUrl(imageUrl)) || imageUrl.trim() === '', message: 'image should be a valid url' },
       userId: { check: typeof userId === 'number', message: '' },
     };
 
@@ -91,9 +92,10 @@ function renderPosts(posts) {
     } else {
       postDetails.createAppend('p', { className: 'content', textContent: post.content });
     }
-
-    const postImgDiv = postDetails.createAppend('div', { className: 'post-img' });
-    postImgDiv.createAppend('img', { src: post.image_url, alt: post.title });
+    if (validateImageUrl(`${post.image_url}`)) {
+      const postImgDiv = postDetails.createAppend('div', { className: 'post-img' });
+      postImgDiv.createAppend('img', { src: post.image_url, alt: post.title });
+    }
 
     const metaDiv = postDetails.createAppend('div', { className: 'meta' });
 

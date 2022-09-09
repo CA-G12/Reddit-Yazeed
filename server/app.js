@@ -29,10 +29,10 @@ app.use(express.static(join(__dirname, '..', 'public')));
 app.use(
   postsRouter,
   commentsRouter,
-  // usersRouter,
+  usersRouter,
   // pagesRouter,
   // votesRouter,
-  errorRouter,
+  // errorRouter,
 );
 
 app.use((req, res) => {
