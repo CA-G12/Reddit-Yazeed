@@ -5,7 +5,7 @@ const commentsHeading = document.querySelector('.comments h3');
 
 const commentFunctions = {
   postComments(postId) {
-    fetchFunctions.fetchData(`/api/v1/post/${postId}/comments`, this.renderComments);
+    fetchFunctions.getData(`/api/v1/post/${postId}/comments`, this.renderComments);
   },
 
   submitComment(content, postId, userId) {

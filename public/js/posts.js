@@ -3,22 +3,22 @@ const postsDiv = document.querySelector('.posts');
 
 const postFunctions = {
   allPosts() {
-    fetchFunctions.fetchData('/api/v1/posts', this.renderPosts);
+    fetchFunctions.getData('/api/v1/posts', this.renderPosts);
   },
   allPostsOrderedByVote() {
-    fetchFunctions.fetchData('/api/v1/posts/hot', this.renderPosts);
+    fetchFunctions.getData('/api/v1/posts/hot', this.renderPosts);
   },
   allPostsOrderedByDate() {
-    fetchFunctions.fetchData('/api/v1/posts/new', this.renderPosts);
+    fetchFunctions.getData('/api/v1/posts/new', this.renderPosts);
   },
   searchPostsByTitle(title) {
-    fetchFunctions.fetchData(`/api/v1/posts/search?title=${title}`, this.renderPosts);
+    fetchFunctions.getData(`/api/v1/posts/search?title=${title}`, this.renderPosts);
   },
   categoryPosts(category) {
-    fetchFunctions.fetchData(`/api/v1/posts/category/${category}`, this.renderPosts);
+    fetchFunctions.getData(`/api/v1/posts/category/${category}`, this.renderPosts);
   },
   singlePost(postId) {
-    fetchFunctions.fetchData(`/api/v1/posts/${postId}`, this.renderPosts);
+    fetchFunctions.getData(`/api/v1/posts/${postId}`, this.renderPosts);
   },
 
   renderPosts(posts) {
