@@ -5,11 +5,11 @@ const commentsHeading = document.querySelector('.comments h3');
 
 const commentFunctions = {
   postComments(postId) {
-    fetchFunctions.getData(`/api/v1/post/${postId}/comments`).then((res) => this.renderComments(res));
+    fetchFunctions().getData(`/api/v1/post/${postId}/comments`).then((res) => this.renderComments(res));
   },
 
   submitComment(content, postId, userId) {
-    fetchFunctions.postData('/api/v1/comment', { content, postId, userId })
+    fetchFunctions().postData('/api/v1/comment', { content, postId, userId })
       .then(() => { this.postComments(postId); });
   },
 
