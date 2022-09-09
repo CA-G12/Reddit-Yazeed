@@ -9,8 +9,14 @@ const commentFunctions = {
   },
 
   submitComment(content, postId, userId) {
-    fetchFunctions().postData('/api/v1/comment', { content, postId, userId })
-      .then(() => { this.postComments(postId); });
+    if (validateComment(content)) {
+      fetchFunctions().postData('/api/v1/comment', { content, postId, userId })
+        .then(() => {
+          this.postComments(postId);
+        }).catch(() => {
+          openThisModal('login');
+        });
+    }
   },
 
   renderComments(comments) {
@@ -60,18 +66,20 @@ commentFunctions.postComments(split[split.length - 2]);
 
 // const postSubmitInput = document.querySelector('.post-submit-input');
 
-submitCommentBn.addEventListener('click', submitComment);
+submitCommentBn.addEventListener('click', () => {
+  commentFunctions.submitComment(commentSubmitInput.value, split[split.length - 2], 1);
+});
 
-function submitComment() {
-  if (commentSubmitInput.value.trim() !== '') {
-    commentFunctions.submitComment(commentSubmitInput.value, split[split.length - 2], 1);
+function validateComment(comment) {
+  if (comment.trim() !== '') {
     commentSubmitInput.value = '';
     commentSubmitInput.placeholder = 'Write your comment here ...';
     commentSubmitInput.classList.remove('invalid');
-  } else {
-    commentSubmitInput.placeholder = 'You should write something';
-    commentSubmitInput.classList.add('invalid');
+    return true;
   }
+  commentSubmitInput.placeholder = 'You should write something';
+  commentSubmitInput.classList.add('invalid');
+  return false;
 }
 
 commentSubmitInput.addEventListener('input', (e) => {

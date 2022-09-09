@@ -52,13 +52,13 @@ signupSubmitBtn.addEventListener('click', (e) => {
   if (valid === true) {
     signupFunctions.signup(user)
       .then((res) => { renderMessage(res); })
-      .catch((err) => displayErrors(JSON.parse(err).errors));
+      .catch((err) => displaySignupErrors(JSON.parse(err).errors));
   } else {
-    displayErrors(valid);
+    displaySignupErrors(valid);
   }
 });
 
-function displayErrors(errors) {
+function displaySignupErrors(errors) {
   const removeQuotes = (str) => str.replaceAll('"', '');
   const userNameError = signupUsernameInput.parentElement.querySelector('.error');
   const emailError = signupEmailInput.parentElement.querySelector('.error');

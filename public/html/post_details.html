@@ -20,9 +20,12 @@
 
   <script src="../../js/modal.js" defer></script>
   <script src="../../js/utils.js" defer></script>
+  <script src="../../js/error.js" defer></script>
   <script src="../../js/fetch.js" defer></script>
   <script src="../../js/posts.js" defer></script>
-  <script src="../../js/index.js" defer></script>
+  <!-- <script src="../../js/index.js" defer></script> -->
+  <script src="../../js/login.js" defer></script>
+  <script src="../../js/signup.js" defer></script>
   <script src="../../js/comments.js" defer></script>
   <title>Reddit, Dive into anything</title>
 </head>
@@ -96,7 +99,7 @@
           <a href="#"><i class="fa-solid fa-link"></i></a>
         </div>
         <div class="posts">
-          <div class="post-item">
+          <!-- <div class="post-item">
             <div class="post-votes">
               <a class="upvote" href=""><i class="fas fa-angle-up"></i></a>
               <span class="vote-number">25</span>
@@ -130,11 +133,11 @@
                   <i class="fa-regular fa-calendar-days"></i>
                   <span class="post-date">22-11-2022 10:50:00</span>
                 </div>
-              </div>
-              <!-- ./post-info -->
-            </div>
-            <!-- ./post-details -->
-          </div>
+              </div> -->
+          <!-- ./post-info -->
+          <!-- </div> -->
+          <!-- ./post-details -->
+          <!-- </div> -->
           <!-- ./post-item -->
         </div>
         <!-- ./posts -->
@@ -202,22 +205,22 @@
       <!-- ./posts-section -->
     </div>
     <!-- ./container flex -->
-    <section class="modal">
+    <section class="modal" style="display: none;">
       <div class="modal-content">
         <a class='close' href="#"><i class="fa-solid fa-xmark"></i></a>
-        <img class='side-image' src="../../images/side-background.jpg" alt="">
+        <img class='side-image' src="./images/side-background.jpg" alt="">
 
         <div class="forms">
-          <div class="login" style="display: block;">
+          <div class="login" style="display: none;">
             <h2>Log In</h2>
             <form class="form-login">
               <div class="form-group">
-                <input type="text" id="username" name="usename"
+                <input type="text" id="login-username" name="usename"
                   placeholder="Please enter username" />
                 <span class="error hidden">Error</span>
               </div>
               <div class="form-group">
-                <input type="password" id="password" name="password"
+                <input type="password" id="login-password" name="password"
                   placeholder="Please enter password" />
                 <span class="error hidden">Error</span>
               </div>
@@ -232,22 +235,28 @@
             <h2>Sign Up</h2>
             <form class="form-signup" action="./index.html">
               <div class="form-group">
-                <input type="text" id="username" name="username"
+                <input type="text" id="signup-username" name="username"
                   placeholder="Please enter username" />
                 <span class="error hidden">Error</span>
               </div>
               <div class="form-group">
-                <input type="email" id="email" name="email" placeholder="Please enter email" />
+                <input type="email" id="signup-email" name="email"
+                  placeholder="Please enter email" />
                 <span class="error hidden">Error</span>
               </div>
               <div class="form-group">
-                <input type="password" id="password" name="password"
+                <input type="password" id="signup-password" name="password"
                   placeholder="Please enter password" />
                 <span class="error hidden">Error</span>
               </div>
               <div class="form-group">
-                <input type="password" id="confirm-password" name="confirm-password"
+                <input type="password" id="signup-confirm-password" name="confirm-password"
                   placeholder="Please confirm password" />
+                <span class="error hidden">Error</span>
+              </div>
+              <div class="form-group">
+                <input type="text" id="signup-image-url" name="image-url"
+                  placeholder="Please enter your profile picture" />
                 <span class="error hidden">Error</span>
               </div>
               <div class="form-group">
@@ -281,8 +290,8 @@
               <div class="form-group">
                 <select name="type" id="type">
                   <option value="" selected disabled>Please select post type:</option>
-                  <option value="all">Text</option>
-                  <option value="programming">Link</option>
+                  <option value="text">Text</option>
+                  <option value="link">Link</option>
                 </select>
                 <span class="error hidden">Error</span>
               </div>
