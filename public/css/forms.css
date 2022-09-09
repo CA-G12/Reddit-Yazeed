@@ -32,8 +32,24 @@ button:hover {
 }
 
 .error {
-  display: none;
+  display: block;
   margin-left: 1rem;
+}
+
+.error.hidden {
+  display: none;
+}
+
+input.invalid,
+select.invalid,
+textarea.invalid {
+  border-color: red;
+}
+
+input.valid,
+select.valid,
+textarea.valid {
+  border-color: green;
 }
 
 /* End Forms styles */
