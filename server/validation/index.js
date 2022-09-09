@@ -1,3 +1,4 @@
 const validatePost = require('./validatePost');
+const signupValidate = require('./signupValidate');
 
-module.exports = { validatePost };
+module.exports = { validatePost, signupValidate };

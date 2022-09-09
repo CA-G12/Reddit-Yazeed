@@ -24,6 +24,8 @@
   <script src="./js/fetch.js" defer></script>
   <script src="./js/posts.js" defer></script>
   <script src="./js/index.js" defer></script>
+  <script src="./js/login.js" defer></script>
+  <script src="./js/signup.js" defer></script>
   <title>Reddit, Dive into anything</title>
 </head>
 
@@ -191,12 +193,12 @@
             <h2>Log In</h2>
             <form class="form-login">
               <div class="form-group">
-                <input type="text" id="username" name="usename"
+                <input type="text" id="login-username" name="usename"
                   placeholder="Please enter username" />
                 <span class="error hidden">Error</span>
               </div>
               <div class="form-group">
-                <input type="password" id="password" name="password"
+                <input type="password" id="login-password" name="password"
                   placeholder="Please enter password" />
                 <span class="error hidden">Error</span>
               </div>
@@ -211,22 +213,28 @@
             <h2>Sign Up</h2>
             <form class="form-signup" action="./index.html">
               <div class="form-group">
-                <input type="text" id="username" name="username"
+                <input type="text" id="signup-username" name="username"
                   placeholder="Please enter username" />
                 <span class="error hidden">Error</span>
               </div>
               <div class="form-group">
-                <input type="email" id="email" name="email" placeholder="Please enter email" />
+                <input type="email" id="signup-email" name="email"
+                  placeholder="Please enter email" />
                 <span class="error hidden">Error</span>
               </div>
               <div class="form-group">
-                <input type="password" id="password" name="password"
+                <input type="password" id="signup-password" name="password"
                   placeholder="Please enter password" />
                 <span class="error hidden">Error</span>
               </div>
               <div class="form-group">
-                <input type="password" id="confirm-password" name="confirm-password"
+                <input type="password" id="signup-confirm-password" name="confirm-password"
                   placeholder="Please confirm password" />
+                <span class="error hidden">Error</span>
+              </div>
+              <div class="form-group">
+                <input type="text" id="signup-image-url" name="image-url"
+                  placeholder="Please enter your profile picture" />
                 <span class="error hidden">Error</span>
               </div>
               <div class="form-group">

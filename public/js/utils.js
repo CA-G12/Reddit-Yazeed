@@ -18,3 +18,18 @@ function validateUrl(url) {
   const regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
   return regex.test(url);
 }
+
+function validateImageUrl(url) {
+  console.log(url);
+  return (url.match(/\.(jpeg|jpg|gif|png)$/gi) != null);
+}
+
+function validatePassword(password) {
+  const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+  return regex.test(password);
+}
+
+function validateEmail(email) {
+  const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return regex.test(email);
+}
