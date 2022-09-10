@@ -72,7 +72,7 @@ function renderPosts(posts) {
   if (!Array.isArray(posts)) {
     posts = [].concat(posts);
   }
-
+console.log(posts);
   posts.forEach((post) => {
     const postItemDiv = postsDiv.createAppend('div', { className: 'post-item', id: post.id });
 
@@ -112,7 +112,7 @@ function renderPosts(posts) {
     } else {
       postDetails.createAppend('p', { className: 'content', textContent: post.content });
     }
-    if (validateImageUrl(`${post.image_url}`)) {
+    if (validateUrl(`${post.image_url}`)) {
       const postImgDiv = postDetails.createAppend('div', { className: 'post-img' });
       postImgDiv.createAppend('img', { src: post.image_url, alt: post.title });
     }
