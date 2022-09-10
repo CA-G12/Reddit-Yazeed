@@ -5,7 +5,7 @@ const signupValidate = (user) => {
   const schema = joi.object({
     username: joi.string().required().min(3),
     email: joi.string().email(),
-    avatarUrl: joi.string(),
+    avatarUrl: joi.string().allow(''),
     password: joi.string().alphanum().min(8).required(),
     confirmPassword: joi.ref('password'),
   });
