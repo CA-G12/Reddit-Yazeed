@@ -44,7 +44,11 @@ function changeUsername(user) {
         submitCommentImage.src = avatarUrl;
       }
     }
-    profileImg.src = avatarUrl;
+    if (validateUrl(avatarUrl)) {
+      profileImg.src = avatarUrl;
+    } else {
+      profileImg.src = '../../images/user_avatar.png';
+    }
   } else {
     profileUsername.textContent = '';
     document.querySelector('.login-btn').style.display = 'block';
