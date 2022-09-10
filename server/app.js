@@ -2,7 +2,6 @@ require('env2')('.env');
 const { join } = require('path');
 const express = require('express');
 const compression = require('compression');
-const { env } = require('process');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const middlewares = require('./middlewares');
@@ -14,10 +13,9 @@ const {
   pagesRouter,
   votesRouter,
 } = require('./routes');
-const { json } = require('express');
 
 const app = express();
-app.set('PORT', env.PORT || 3000);
+app.set('PORT', process.env.PORT || 3000);
 
 app.disable('x-powered-by');
 app.use(compression());
