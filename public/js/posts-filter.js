@@ -5,7 +5,6 @@ const newLink = document.querySelector('.posts-order .new');
 const categoryList = document.querySelectorAll('.sidebar-wrapper ul a');
 const searchInput = document.querySelector('.search');
 
-
 postFunctions.allPosts();
 
 hotLink.addEventListener('click', () => {

@@ -19,7 +19,7 @@ const signupFunctions = {
       email: { check: validateEmail(email), message: 'email is invalid' },
       password: { check: /[a-zA-Z0-9_]{8,}$/.test(password), message: 'password should be at least 8 letters' },
       confirmPassword: { check: password === confirmPassword, message: 'passwords doesn\'t match' },
-      avatarUrl: { check: (validateUrl(avatarUrl) && validateImageUrl(avatarUrl)) || avatarUrl.trim() === '', message: 'image should be a valid url' },
+      avatarUrl: { check: validateUrl(avatarUrl) || avatarUrl.trim() === '', message: 'image should be a valid url' },
     };
 
     const rules = Object.keys(schema);
@@ -47,7 +47,7 @@ signupSubmitBtn.addEventListener('click', (e) => {
   const valid = signupFunctions.validateUser(user);
   if (valid === true) {
     signupFunctions.signup(user)
-      .then((res) => { window.location.reload(); })
+      .then(() => { window.location.reload(); })
       .catch((err) => displaySignupErrors(JSON.parse(err).errors));
   } else {
     displaySignupErrors(valid);

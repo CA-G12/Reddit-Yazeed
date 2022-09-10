@@ -4,7 +4,7 @@ const allPostsOrderedByVoteQuery = () => {
   const sql = `SELECT 
       p.id,
       p.title,
-      p.content,
+      LEFT(p.content, 100) as content,
       p.type,
       p.category,
       p.image_url,

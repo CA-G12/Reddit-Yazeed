@@ -163,6 +163,8 @@ ul {
 .submit-comment>img {
   width: 5rem;
   margin-right: 2rem;
+  border-radius: 50%;
+
 }
 
 .submit-post input,

@@ -34,12 +34,12 @@ app.use(
   commentsRouter,
   usersRouter,
   pagesRouter,
-  // votesRouter,
+  votesRouter,
   // errorRouter,
 );
 
 app.use((req, res) => {
-  res.status(404).send({ message: 'Page not found', status: 404 });
+  res.status(404).sendFile(join(__dirname, '..', 'public', 'html', '404.html'));
 });
 
 /* eslint-disable no-unused-vars */

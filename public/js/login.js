@@ -28,10 +28,6 @@ const loginFunctions = {
   },
 };
 
-function renderMessage(res) {
-  console.log(res);
-}
-
 loginSubmitBtn.addEventListener('click', (e) => {
   e.preventDefault();
   const user = {

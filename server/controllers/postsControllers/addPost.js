@@ -7,7 +7,7 @@ const addPost = (req, res, next) => {
     title, content, type, category, imageUrl,
   } = req.body;
 
-  const userId = req.user.id;
+  const userId = req.user && req.user.id;
   if (!userId) {
     next(new ServerError({
       message: 'User is unathuraized',

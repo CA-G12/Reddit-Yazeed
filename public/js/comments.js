@@ -41,7 +41,7 @@ const commentFunctions = {
       const userImgDiv = metaDiv.createAppend('div', { className: 'user-img' });
       const userImg = userImgDiv.createAppend('img', {
         alt: 'User Avatar Image',
-        src: comment.image_url || '../../images/user_avatar.png',
+        src: comment.avatar_url || '../../images/user_avatar.png',
       });
 
       // Username
