@@ -9,14 +9,19 @@ const commentFunctions = {
   },
 
   submitComment(content, postId, userId) {
-    if (validateComment(content)) {
-      fetchFunctions().postData('/api/v1/comment', { content, postId, userId })
-        .then(() => {
-          this.postComments(postId);
-        }).catch(() => {
-          openThisModal('login');
-        });
-    }
+    fetchFunctions().getData('/check-user').then(() => {
+      if (validateComment(content)) {
+        fetchFunctions().postData('/api/v1/comment', { content, postId, userId })
+          .then(() => {
+            this.postComments(postId);
+          }).catch(() => {
+            openThisModal('login');
+          });
+      }
+    }).catch(() => {
+      openThisModal('login');
+    });
+
   },
 
   renderComments(comments) {

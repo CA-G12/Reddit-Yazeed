@@ -30,7 +30,7 @@ app.use(
   postsRouter,
   commentsRouter,
   usersRouter,
-  // pagesRouter,
+  pagesRouter,
   // votesRouter,
   // errorRouter,
 );
