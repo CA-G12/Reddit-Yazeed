@@ -20,7 +20,7 @@ const login = (req, res, next) => {
         payload.id = result.rows[0].id;
         payload.username = result.rows[0].username;
         payload.email = result.rows[0].email;
-        payload.avatarUrl = result.rows[0].avatarUrl;
+        payload.avatarUrl = result.rows[0].avatar_url;
         return bcrypt.compare(password, result.rows[0].password);
       }
       throw new ServerError({

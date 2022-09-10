@@ -19,7 +19,11 @@ categoryList.forEach((categoryLink) => {
     const category = e.target.dataset.cat;
     categoryList.forEach((element) => element.classList.remove('active'));
     e.target.classList.add('active');
-    postFunctions.categoryPosts(category);
+    if (category === 'all') {
+      postFunctions.allPosts();
+    } else {
+      postFunctions.categoryPosts(category);
+    }
   });
 });
 
