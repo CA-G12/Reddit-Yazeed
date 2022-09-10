@@ -1,100 +1,32 @@
-// Render posts on widnow load
-/* eslint-disable no-undef */
-const hotLink = document.querySelector('.posts-order .hot');
-const newLink = document.querySelector('.posts-order .new');
-const categoryList = document.querySelectorAll('.sidebar-wrapper ul a');
-const searchInput = document.querySelector('.search');
+const loginBtn = document.querySelector('.login-btn');
+const signupBtn = document.querySelector('.signup-btn');
+const logoutbtn = document.querySelector('.logout-btn');
+// User control buttons
 
-postFunctions.allPosts();
+const postSubmitInput = document.querySelector('.post-submit-input');
 
-hotLink.addEventListener('click', () => {
-  postFunctions.allPostsOrderedByVote();
-});
-newLink.addEventListener('click', () => {
-  postFunctions.allPostsOrderedByDate();
+logoutbtn.addEventListener('click', () => {
+  fetchFunctions().getData('/logout');
 });
 
-categoryList.forEach((categoryLink) => {
-  categoryLink.addEventListener('click', (e) => {
-    const category = e.target.dataset.cat;
-    categoryList.forEach((element) => element.classList.remove('active'));
-    e.target.classList.add('active');
-    postFunctions.categoryPosts(category);
-  });
+loginBtn.addEventListener('click', () => openThisModal('login'));
+signupBtn.addEventListener('click', () => openThisModal('signup'));
+postSubmitInput.addEventListener('focus', () => {
+  window.setTimeout(() => openThisModal('submit'), 500);
 });
 
-searchInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    postFunctions.searchPostsByTitle(e.target.value.trim());
-  }
-});
+function changeUsername(user) {
+  const profileUsername = document.querySelector('.profile-username');
 
-const titleInput = document.querySelector('#title');
-const categoryInput = document.querySelector('#category');
-const typeInput = document.querySelector('#type');
-const imageUrlInput = document.querySelector('#image-url');
-const contentInput = document.querySelector('#content');
-const submitPostBtn = document.querySelector('#submit-btn');
-
-submitPostBtn.addEventListener('click', (e) => {
-  console.log('hello');
-  e.preventDefault();
-  const post = {
-    title: titleInput.value,
-    category: categoryInput.value.toLowerCase(),
-    type: typeInput.value.toLowerCase(),
-    imageUrl: imageUrlInput.value,
-    content: contentInput.value,
-    userId: 1,
-  };
-
-  const valid = postFunctions.validatePost(post);
-  if (valid === true) {
-    postFunctions.addPost(post)
-      .then(() => { window.location.reload(); })
-      .catch((err) => displayPostErrors(JSON.parse(err).errors));
+  if (user) {
+    profileUsername.textContent = user.username;
+    document.querySelector('.login-btn').style.display = 'none';
+    document.querySelector('.signup-btn').style.display = 'none';
+    document.querySelector('.logout-btn').style.display = 'block';
   } else {
-    displayPostErrors(valid);
-  }
-});
-
-function displayPostErrors(errors) {
-  const removeQuotes = (str) => str.replaceAll('"', '');
-  const titleError = titleInput.parentElement.querySelector('.error');
-  const categoryError = categoryInput.parentElement.querySelector('.error');
-  const typeError = typeInput.parentElement.querySelector('.error');
-  const contentError = contentInput.parentElement.querySelector('.error');
-  const imageUrlError = imageUrlInput.parentElement.querySelector('.error');
-
-  if (errors.title) {
-    showError(titleInput, titleError, removeQuotes(errors.title));
-  } else {
-    hideError(titleInput, titleError, 'valid');
-  }
-
-  if (errors.category) {
-    showError(categoryInput, categoryError, removeQuotes(errors.category));
-  } else {
-    hideError(categoryInput, categoryError, 'valid');
-  }
-
-  if (errors.type) {
-    showError(typeInput, typeError, removeQuotes(errors.type));
-  } else {
-    hideError(typeInput, typeError, 'valid');
-  }
-
-  if (errors.content) {
-    showError(contentInput, contentError, removeQuotes(errors.content));
-  } else {
-    hideError(contentInput, contentError, 'valid');
-  }
-
-  if (errors.imageUrl) {
-    showError(imageUrlInput, imageUrlError, removeQuotes(errors.imageUrl));
-  } else {
-    hideError(imageUrlInput, imageUrlError, 'valid');
+    profileUsername.textContent = '';
+    document.querySelector('.login-btn').style.display = 'block';
+    document.querySelector('.signup-btn').style.display = 'block';
+    document.querySelector('.logout-btn').style.display = 'none';
   }
 }
-

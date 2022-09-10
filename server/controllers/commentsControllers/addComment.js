@@ -3,15 +3,25 @@ const ServerError = require('../../errors/serverError');
 
 const addComment = (req, res, next) => {
   const {
-    content, userId, postId,
+    content, postId,
   } = req.body;
 
+  const userId = req.user.id;
+  if (!userId) {
+    next(new ServerError({
+      message: 'User is unathuraized',
+      label: 'Authorization Error',
+      status: 400,
+    }));
+  }
   commentsQueries.addCommentQuery({ content, userId, postId })
     .then((result) => {
       if (result.rowCount) {
         res.status(200).send({
           message: 'Comment is added successfully',
           result: result.rows[0],
+          user: req.user,
+          isLoggedIn: true,
         });
       }
     })

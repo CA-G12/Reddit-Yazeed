@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { postsControllers } = require('../controllers');
-const { authUser } = require('../middlewares');
+const { authUser, checkUser } = require('../middlewares');
 
 // API routes
 router.get('/api/v1/posts', postsControllers.allPosts);

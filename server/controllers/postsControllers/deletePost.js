@@ -10,6 +10,8 @@ const deletePost = (req, res, next) => {
         res.status(200).send({
           message: 'Post is deleted successfully',
           result: result.rows[0],
+          user: req.user,
+          isLoggedIn: true,
         });
       }
     })

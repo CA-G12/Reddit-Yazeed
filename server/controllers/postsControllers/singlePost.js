@@ -10,11 +10,15 @@ const singlePost = (req, res, next) => {
         res.status(200).send({
           message: `We found your posts of id "${data.rows[0].id}"`,
           result: data.rows[0],
+          user: req.user,
+          isLoggedIn: true,
         });
       } else {
         res.status(200).send({
           message: 'No data found',
           result: {},
+          user: req.user,
+          isLoggedIn: true,
         });
       }
     })

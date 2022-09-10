@@ -4,10 +4,20 @@ const { validatePost } = require('../../validation');
 
 const addPost = (req, res, next) => {
   const {
-    title, content, type, category, imageUrl, userId,
+    title, content, type, category, imageUrl,
   } = req.body;
 
-  validatePost(req.body)
+  const userId = req.user.id;
+  if (!userId) {
+    next(new ServerError({
+      message: 'User is unathuraized',
+      label: 'Authorization Error',
+      status: 400,
+    }));
+  }
+  validatePost({
+    title, content, type, category, imageUrl, userId,
+  })
     .then(() => postsQueries.addPostQuery({
       title, content, type, category, imageUrl, userId,
     }))
@@ -16,6 +26,8 @@ const addPost = (req, res, next) => {
         res.status(200).send({
           message: 'Post is added successfully',
           result: result.rows[0],
+          user: req.user,
+          isLoggedIn: true,
         });
       }
     })
