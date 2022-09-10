@@ -1,8 +1,6 @@
 # Reddit-Yazeed
+## Live Server [HERE](https://reddit-yazeed.herokuapp.com/)
 --
-# Live Server [HERE](https://reddit-yazeed.herokuapp.com/)
---
-
 ## Description:
 
 A humble try to clone reddit website as a training, I have done my best, I hope you will like it.
@@ -11,13 +9,11 @@ You can visit user profiles as well to see their posts and comments.
 So give yourself a small journey through my website, I hope you like it.
 
 ---
-
 ## Databae Schema 
 
-![Databae Schema](public\images\database-schema.png "Databae Schema ")
+![Databae Schema](public\images\database-schema.png)
 
 --
-
 ## User Stories:
 
 - You can sign up and sign in.
@@ -31,7 +27,6 @@ So give yourself a small journey through my website, I hope you like it.
 - You can filter posts by category
 
 ---
-
 ##  How to install the project on the local machine
 
 - You can click the _code_ drop-down menu as illustrated in the picture above and copy the link to clone the repo.

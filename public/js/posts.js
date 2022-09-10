@@ -31,6 +31,9 @@ const postFunctions = {
   addPost(postObj) {
     return fetchFunctions().postData('/api/v1/post', postObj);
   },
+  addUpvote({ postId, userId, type }) {
+    return fetchFunctions().postData('/api/v1/vote', { postId, userId, type });
+  },
   validatePost({
     title, content, type, category, imageUrl, userId,
   }) {
@@ -43,7 +46,7 @@ const postFunctions = {
           .includes(category),
         message: 'category should not be empty',
       },
-      imageUrl: { check: (validateUrl(imageUrl) && validateImageUrl(imageUrl)) || imageUrl.trim() === '', message: 'image should be a valid url' },
+      imageUrl: { check: validateUrl(imageUrl) || imageUrl.trim() === '', message: 'image should be a valid url' },
       userId: { check: typeof userId === 'number', message: '' },
     };
 
@@ -78,10 +81,13 @@ function renderPosts(posts) {
     const upVoteLink = postVotesDiv.createAppend('a', { href: '#', className: 'upvote' });
 
     upVoteLink.createAppend('i', { className: 'fas fa-angle-up' });
+    upVoteLink.addEventListener('click', () => sendVote(post.id, 1));
     const voteNumberSpan = postVotesDiv
       .createAppend('span', { className: 'vote-number', textContent: post.votes });
 
     const downVoteLink = postVotesDiv.createAppend('a', { href: '#', className: 'downvote' });
+    downVoteLink.addEventListener('click', () => sendVote(post.id, -1));
+
     downVoteLink.createAppend('i', { className: 'fas fa-angle-down' });
 
     const postDetails = postItemDiv.createAppend('div', { className: 'post-details' });
@@ -156,11 +162,26 @@ submitPostBtn1.addEventListener('click', (e) => {
     } else {
       displayPostErrors(valid);
     }
-  }).catch((err) => {
-    console.log(err);
+  }).catch(() => {
     openThisModal('login');
   });
 });
+
+function sendVote(postId, type) {
+  fetchFunctions().getData('/check-auth').then((userResult) => {
+    const userId = (userResult.user) ? userResult.user.id : null;
+    postFunctions.addUpvote({ userId, postId, type })
+      .then(() => {
+        const currentPost = document.getElementById(postId);
+        window.location.reload();
+        window.scrollTo(0, currentPost.offsetTop);
+      })
+      .catch(() => {
+      });
+  }).catch(() => {
+    openThisModal('login');
+  });
+}
 
 function displayPostErrors(errors) {
   const removeQuotes = (str) => str.replaceAll('"', '');
