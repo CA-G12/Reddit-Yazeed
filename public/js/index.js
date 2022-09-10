@@ -7,6 +7,9 @@ const postSubmitInput = document.querySelector('.post-submit-input');
 const submitPostImage = document.querySelector('.submit-post img');
 const submitCommentImage = document.querySelector('.submit-comment img');
 
+const profileImgDiv = document.querySelector('.profile-img');
+const profileImg = profileImgDiv.querySelector('img');
+
 logoutbtn.addEventListener('click', () => {
   fetchFunctions().getData('/logout');
 });
@@ -21,16 +24,19 @@ if (postSubmitInput) {
 
 function changeUsername(user) {
   const profileUsername = document.querySelector('.profile-username');
-  console.log(user);
   if (user) {
     profileUsername.textContent = user.username;
     document.querySelector('.login-btn').style.display = 'none';
     document.querySelector('.signup-btn').style.display = 'none';
     document.querySelector('.logout-btn').style.display = 'block';
-    submitPostImage.src = user.avatar_url;
-    if (submitCommentImage) {
-      submitCommentImage.src = user.avatar_url;
+    const avatarUrl = user.avatar_url || user.avatarUrl;
+    if (validateUrl(avatarUrl)) {
+      submitPostImage.src = avatarUrl;
+      if (submitCommentImage) {
+        submitCommentImage.src = avatarUrl;
+      }
     }
+    profileImg.src = avatarUrl;
   } else {
     profileUsername.textContent = '';
     document.querySelector('.login-btn').style.display = 'block';
@@ -40,5 +46,7 @@ function changeUsername(user) {
     if (submitCommentImage) {
       submitCommentImage.src = '../../images/user_avatar.png';
     }
+
+    profileImg.src = '../../images/user_avatar.png';
   }
 }
