@@ -2,7 +2,6 @@ const bcrypt = require('bcryptjs');
 require('env2')('.env');
 const { userQueries } = require('../../database/queries');
 const ServerError = require('../../errors/serverError');
-const { loginValidate } = require('../../validation');
 const { signupValidate } = require('../../validation');
 const generateToken = require('../../utils/generateToken');
 

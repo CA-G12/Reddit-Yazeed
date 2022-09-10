@@ -16,8 +16,9 @@ function fetchFunctions() {
 
   const getData = (url) => fetchUrl('GET', url)
     .then((res) => {
-      if (res.status === 404) window.location.href = '../html/404.html';
-      else if (res.status === 500) window.location.href = '../html/500.html';
+      if (res.status === 404) window.location.href = '/error/404';
+      else if (res.status === 500) window.location.href = '/error/500';
+      else if (res.status === 400) throw JSON.stringify(new CustomError(res.message, res.errors));
       else if (res.message !== 'No data found') {
         return res.result;
       }
@@ -26,8 +27,8 @@ function fetchFunctions() {
 
   const postData = (url, body) => fetchUrl('POST', url, body)
     .then((res) => {
-      if (res.status === 404) window.location.href = '../html/404.html';
-      else if (res.status === 500) window.location.href = '../html/500.html';
+      if (res.status === 404) window.location.href = '/error/404';
+      else if (res.status === 500) window.location.href = '/error/500';
       else if (res.status === 400) throw JSON.stringify(new CustomError(res.message, res.errors));
       else if (res.message === 'No data found') {
         return null;

@@ -1,6 +1,7 @@
 # Reddit-Yazeed
-## Live Server [HERE](https://reddit-yazeed.herokuapp.com/)
----
+--
+# Live Server [HERE](https://reddit-yazeed.herokuapp.com/)
+--
 
 ## Description:
 
@@ -13,9 +14,9 @@ So give yourself a small journey through my website, I hope you like it.
 
 ## Databae Schema 
 
-![Databae Schema](/public/images/database-schema.png)
+![Databae Schema](public\images\database-schema.png "Databae Schema ")
 
----
+--
 
 ## User Stories:
 
@@ -66,7 +67,6 @@ So give yourself a small journey through my website, I hope you like it.
 - -> jwt
 - -> cookie parser
 
----
 ## This app is presented to you by:
 
 - [Yazeed El-Haj Salem](https://github.com/ysalem-dev-89)

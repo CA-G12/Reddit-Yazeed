@@ -7,15 +7,19 @@ const checkUser = (req, res, next) => {
   if (token) {
     verifyToken(token).then((decoded) => {
       res.user = decoded;
-      // res.status(200).json({ message: 'User is authorized', label: 'Success' });
-      next();
-    }).catch(() => {
+      res.status(200).json({ message: 'User is authorized', label: 'Success', status: 200 });
+      // next();
+    }).catch((err) => {
       res.user = null;
-      next();
+      next(err);
     });
   } else {
     res.user = null;
-    next();
+    next(new ServerError({
+      message: 'User is unathuraized',
+      label: 'Authorization Error',
+      status: 400,
+    }));
   }
 };
 
