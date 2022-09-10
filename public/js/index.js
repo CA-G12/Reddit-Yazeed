@@ -4,6 +4,7 @@ const logoutbtn = document.querySelector('.logout-btn');
 // User control buttons
 
 const postSubmitInput = document.querySelector('.post-submit-input');
+const postSubmitLink = document.querySelector('.submit-post a');
 const submitPostImage = document.querySelector('.submit-post img');
 const submitCommentImage = document.querySelector('.submit-comment img');
 
@@ -19,6 +20,13 @@ signupBtn.addEventListener('click', () => openThisModal('signup'));
 if (postSubmitInput) {
   postSubmitInput.addEventListener('focus', () => {
     window.setTimeout(() => openThisModal('submit'), 500);
+    document.querySelector('#type').value = 'text';
+  });
+}
+if (postSubmitLink) {
+  postSubmitLink.addEventListener('click', () => {
+    window.setTimeout(() => openThisModal('submit'), 500);
+    document.querySelector('#type').value = 'link';
   });
 }
 

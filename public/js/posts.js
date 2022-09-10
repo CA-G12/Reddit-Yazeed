@@ -82,14 +82,21 @@ function renderPosts(posts) {
 
     upVoteLink.createAppend('i', { className: 'fas fa-angle-up' });
     upVoteLink.addEventListener('click', () => sendVote(post.id, 1));
-    const voteNumberSpan = postVotesDiv
-      .createAppend('span', { className: 'vote-number', textContent: post.votes });
+    const votesNumber = post.votes;
+    postVotesDiv.createAppend('span', { className: 'vote-number', textContent: votesNumber < 0 ? 0 : votesNumber });
+
+    if (votesNumber > 0) {
+      upVoteLink.style.color = '#0079d3';
+    }
 
     const downVoteLink = postVotesDiv.createAppend('a', { href: '#', className: 'downvote' });
     downVoteLink.addEventListener('click', () => sendVote(post.id, -1));
 
     downVoteLink.createAppend('i', { className: 'fas fa-angle-down' });
 
+    if (votesNumber < 0) {
+      downVoteLink.style.color = 'red';
+    }
     const postDetails = postItemDiv.createAppend('div', { className: 'post-details' });
 
     const titleHeading = postDetails
@@ -173,7 +180,13 @@ function sendVote(postId, type) {
     postFunctions.addUpvote({ userId, postId, type })
       .then(() => {
         const currentPost = document.getElementById(postId);
-        window.location.reload();
+        if (window.location.href.includes('comments')) {
+          const split = window.location.href.split('/');
+          const id = split[split.length - 2];
+          postFunctions.singlePost(id);
+        } else {
+          postFunctions.allPosts();
+        }
         window.scrollTo(0, currentPost.offsetTop);
       })
       .catch(() => {
