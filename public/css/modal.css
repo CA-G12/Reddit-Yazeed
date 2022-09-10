@@ -44,6 +44,12 @@
   object-fit: cover;
 }
 
+@media (max-width: 768px) {
+  .modal .side-image {
+    display: none;
+  }
+}
+
 .modal .forms h2 {
   margin-bottom: 2rem;
   font-size: 3rem;

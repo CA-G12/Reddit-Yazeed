@@ -8,11 +8,15 @@ const allPostsOrderedByDate = (req, res, next) => {
         res.status(200).send({
           message: `We found ${result.rowCount} posts`,
           result: result.rows,
+          user: req.user,
+          isLoggedIn: true,
         });
       } else {
         res.status(200).send({
           message: 'No data found',
           result: {},
+          user: req.user,
+          isLoggedIn: true,
         });
       }
     })

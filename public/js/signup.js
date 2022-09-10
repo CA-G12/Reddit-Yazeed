@@ -34,10 +34,6 @@ const signupFunctions = {
   },
 };
 
-function renderMessage(res) {
-  console.log(res);
-}
-
 signupSubmitBtn.addEventListener('click', (e) => {
   e.preventDefault();
   const user = {
@@ -51,7 +47,7 @@ signupSubmitBtn.addEventListener('click', (e) => {
   const valid = signupFunctions.validateUser(user);
   if (valid === true) {
     signupFunctions.signup(user)
-      .then((res) => { renderMessage(res); })
+      .then((res) => { window.location.reload(); })
       .catch((err) => displaySignupErrors(JSON.parse(err).errors));
   } else {
     displaySignupErrors(valid);

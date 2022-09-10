@@ -5,6 +5,7 @@ const compression = require('compression');
 const { env } = require('process');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
+const middlewares = require('./middlewares');
 const {
   errorRouter,
   postsRouter,
@@ -25,6 +26,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(morgan('tiny'));
 app.use(express.static(join(__dirname, '..', 'public')));
+
+app.use(middlewares.checkUser);
 
 app.use(
   postsRouter,

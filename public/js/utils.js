@@ -20,7 +20,6 @@ function validateUrl(url) {
 }
 
 function validateImageUrl(url) {
-  console.log(url);
   return (url.match(/\.(jpeg|jpg|gif|png)$/gi) != null);
 }
 
@@ -32,6 +31,33 @@ function validatePassword(password) {
 function validateEmail(email) {
   const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   return regex.test(email);
+}
+
+function timeSince(date) {
+  const seconds = Math.floor((new Date() - date) / 1000);
+
+  let interval = seconds / 31536000;
+
+  if (interval > 1) {
+    return `${Math.floor(interval)} years ago`;
+  }
+  interval = seconds / 2592000;
+  if (interval > 1) {
+    return `${Math.floor(interval)} months ago`;
+  }
+  interval = seconds / 86400;
+  if (interval > 1) {
+    return `${Math.floor(interval)} days ago`;
+  }
+  interval = seconds / 3600;
+  if (interval > 1) {
+    return `${Math.floor(interval)} hours ago`;
+  }
+  interval = seconds / 60;
+  if (interval > 1) {
+    return `${Math.floor(interval)} minutes ago`;
+  }
+  return `${Math.floor(seconds)} seconds ago`;
 }
 
 const showError = (checkedInput, messageElement, errorMessage) => {

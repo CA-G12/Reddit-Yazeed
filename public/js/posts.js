@@ -1,6 +1,13 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-undef */
 const postsDiv = document.querySelector('.posts');
+// Add post inputs
+const titleInput = document.querySelector('#title');
+const categoryInput = document.querySelector('#category');
+const typeInput = document.querySelector('#type');
+const imageUrlInput = document.querySelector('#image-url');
+const contentInput = document.querySelector('#content');
+const submitPostBtn1 = document.querySelector('#submit-btn');
 
 const postFunctions = {
   allPosts() {
@@ -120,7 +127,76 @@ function renderPosts(posts) {
 
     postDateDiv.createAppend('i', { className: 'fa-regular fa-calendar-days' });
     postDateDiv.createAppend('span', {
-      className: 'post-date', textContent: formatDate(post.created_at),
+      className: 'post-date', textContent: timeSince(new Date(post.created_at)),
     });
   });
+}
+
+submitPostBtn1.addEventListener('click', (e) => {
+  e.preventDefault();
+  const title = titleInput.value;
+  const category = categoryInput.value.toLowerCase();
+  const type = typeInput.value.toLowerCase();
+  const imageUrl = imageUrlInput.value;
+  const content = contentInput.value;
+
+  fetchFunctions().getData('/check-auth').then((userResult) => {
+    const userId = (userResult.user) ? userResult.user.id : null;
+    const valid = postFunctions.validatePost({
+      title, category, type, imageUrl, content, userId,
+    });
+    if (valid === true) {
+      postFunctions.addPost({
+        title, category, type, imageUrl, content,
+      })
+        .then(() => { window.location.reload(); })
+        .catch((err) => {
+          displayPostErrors(JSON.parse(err).errors);
+        });
+    } else {
+      displayPostErrors(valid);
+    }
+  }).catch((err) => {
+    console.log(err);
+    openThisModal('login');
+  });
+});
+
+function displayPostErrors(errors) {
+  const removeQuotes = (str) => str.replaceAll('"', '');
+  const titleError = titleInput.parentElement.querySelector('.error');
+  const categoryError = categoryInput.parentElement.querySelector('.error');
+  const typeError = typeInput.parentElement.querySelector('.error');
+  const contentError = contentInput.parentElement.querySelector('.error');
+  const imageUrlError = imageUrlInput.parentElement.querySelector('.error');
+
+  if (errors.title) {
+    showError(titleInput, titleError, removeQuotes(errors.title));
+  } else {
+    hideError(titleInput, titleError, 'valid');
+  }
+
+  if (errors.category) {
+    showError(categoryInput, categoryError, removeQuotes(errors.category));
+  } else {
+    hideError(categoryInput, categoryError, 'valid');
+  }
+
+  if (errors.type) {
+    showError(typeInput, typeError, removeQuotes(errors.type));
+  } else {
+    hideError(typeInput, typeError, 'valid');
+  }
+
+  if (errors.content) {
+    showError(contentInput, contentError, removeQuotes(errors.content));
+  } else {
+    hideError(contentInput, contentError, 'valid');
+  }
+
+  if (errors.imageUrl) {
+    showError(imageUrlInput, imageUrlError, removeQuotes(errors.imageUrl));
+  } else {
+    hideError(imageUrlInput, imageUrlError, 'valid');
+  }
 }

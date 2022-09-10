@@ -20,10 +20,10 @@
 
   <script src="../../js/modal.js" defer></script>
   <script src="../../js/utils.js" defer></script>
-  <script src="../../js/error.js" defer></script>
   <script src="../../js/fetch.js" defer></script>
+  <script src="../../js/index.js" defer></script>
+  <script src="../../js/error.js" defer></script>
   <script src="../../js/posts.js" defer></script>
-  <!-- <script src="../../js/index.js" defer></script> -->
   <script src="../../js/login.js" defer></script>
   <script src="../../js/signup.js" defer></script>
   <script src="../../js/comments.js" defer></script>
@@ -75,15 +75,16 @@
       </div>
       <!-- ./search-bar -->
       <div class="user-controls">
-        <button class="login-btn">Log In</button>
-        <button class="signup-btn">Sign Up</button>
+        <button class="login-btn" style="display: none;">Log In</button>
+        <button class="signup-btn" style="display: none;">Sign Up</button>
         <a aria-label="profile" class="profile-link" href="#">
           <div class="profile-img">
             <i class="fa fa-user-circle" aria-hidden="true"></i>
             <img src="#" alt="Profile Avatar" style="display: none" />
           </div>
-          <span class="profile-username">Yazeed</span>
+          <span class="profile-username"></span>
         </a>
+        <button class="logout-btn" style="display: none;">Logout</button>
       </div>
       <!-- ./user-controls -->
     </div>

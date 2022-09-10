@@ -8,10 +8,10 @@ const commentFunctions = {
     fetchFunctions().getData(`/api/v1/post/${postId}/comments`).then((res) => this.renderComments(res));
   },
 
-  submitComment(content, postId, userId) {
-    fetchFunctions().getData('/check-user').then(() => {
+  submitComment(content, postId) {
+    fetchFunctions().getData('/check-auth').then((userResult) => {
       if (validateComment(content)) {
-        fetchFunctions().postData('/api/v1/comment', { content, postId, userId })
+        fetchFunctions().postData('/api/v1/comment', { content, postId, userId: userResult.user.id })
           .then(() => {
             this.postComments(postId);
           }).catch(() => {
@@ -21,7 +21,6 @@ const commentFunctions = {
     }).catch(() => {
       openThisModal('login');
     });
-
   },
 
   renderComments(comments) {
@@ -57,7 +56,7 @@ const commentFunctions = {
 
       commentDateDiv.createAppend('i', { className: 'fa-regular fa-calendar-days' });
       commentDateDiv.createAppend('span', {
-        className: 'comment-date', textContent: formatDate(comment.created_at),
+        className: 'comment-date', textContent: timeSince(new Date(comment.created_at)),
       });
 
       commentItemDiv.createAppend('div', { className: 'comment-content', textContent: comment.content });
@@ -72,7 +71,7 @@ commentFunctions.postComments(split[split.length - 2]);
 // const postSubmitInput = document.querySelector('.post-submit-input');
 
 submitCommentBn.addEventListener('click', () => {
-  commentFunctions.submitComment(commentSubmitInput.value, split[split.length - 2], 1);
+  commentFunctions.submitComment(commentSubmitInput.value, split[split.length - 2]);
 });
 
 function validateComment(comment) {

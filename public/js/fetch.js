@@ -18,9 +18,11 @@ function fetchFunctions() {
     .then((res) => {
       if (res.status === 404) window.location.href = '/error/404';
       else if (res.status === 500) window.location.href = '/error/500';
-      else if (res.status === 400) throw JSON.stringify(new CustomError(res.message, res.errors));
-      else if (res.message !== 'No data found') {
-        return res.result;
+      else if (res.status === 400 || res.status === 403) {
+        throw JSON.stringify(new CustomError(res.message, res.errors));
+      } else if (res.message !== 'No data found') {
+        changeUsername(res.user);
+        return res.result || res;
       }
       return null;
     });
@@ -29,11 +31,12 @@ function fetchFunctions() {
     .then((res) => {
       if (res.status === 404) window.location.href = '/error/404';
       else if (res.status === 500) window.location.href = '/error/500';
-      else if (res.status === 400) throw JSON.stringify(new CustomError(res.message, res.errors));
-      else if (res.message === 'No data found') {
+      else if (res.status === 400 || res.status === 403) {
+        throw JSON.stringify(new CustomError(res.message, res.errors));
+      } else if (res.message === 'No data found') {
         return null;
       } else {
-        return res.result;
+        return res.result || res;
       }
       return null;
     });
