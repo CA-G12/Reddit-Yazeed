@@ -1,6 +1,6 @@
 # Reddit-Yazeed
 ## Live Server [HERE](https://reddit-yazeed.herokuapp.com/)
---
+---
 ## Description:
 
 A humble try to clone reddit website as a training, I have done my best, I hope you will like it.
@@ -11,9 +11,9 @@ So give yourself a small journey through my website, I hope you like it.
 ---
 ## Databae Schema 
 
-![Databae Schema](public\images\database-schema.png)
+![Databae Schema](public/images/database-schema.png)
 
---
+---
 ## User Stories:
 
 - You can sign up and sign in.
