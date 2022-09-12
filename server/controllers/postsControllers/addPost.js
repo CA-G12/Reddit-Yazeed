@@ -45,3 +45,4 @@ const addPost = (req, res, next) => {
 };
 
 module.exports = addPost;
+

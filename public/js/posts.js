@@ -72,13 +72,12 @@ function renderPosts(posts) {
   if (!Array.isArray(posts)) {
     posts = [].concat(posts);
   }
-console.log(posts);
   posts.forEach((post) => {
     const postItemDiv = postsDiv.createAppend('div', { className: 'post-item', id: post.id });
 
     // Votes
     const postVotesDiv = postItemDiv.createAppend('div', { className: 'post-votes' });
-    const upVoteLink = postVotesDiv.createAppend('a', { href: '#', className: 'upvote' });
+    const upVoteLink = postVotesDiv.createAppend('a', { className: 'upvote' });
 
     upVoteLink.createAppend('i', { className: 'fas fa-angle-up' });
     upVoteLink.addEventListener('click', () => sendVote(post.id, 1));
@@ -89,7 +88,7 @@ console.log(posts);
       upVoteLink.style.color = '#0079d3';
     }
 
-    const downVoteLink = postVotesDiv.createAppend('a', { href: '#', className: 'downvote' });
+    const downVoteLink = postVotesDiv.createAppend('a', { className: 'downvote' });
     downVoteLink.addEventListener('click', () => sendVote(post.id, -1));
 
     downVoteLink.createAppend('i', { className: 'fas fa-angle-down' });
@@ -101,12 +100,12 @@ console.log(posts);
 
     const titleHeading = postDetails
       .createAppend('h3', { className: 'title' });
-    titleHeading.createAppend('a', { href: `/post/${post.id}/comments`, textContent: post.title });
+    titleHeading.createAppend('a', { href: `/post/${post.id}/comments`, innerHTML: post.title });
 
     if (post.type === 'link') {
       if (validateUrl(post.content)) {
         postDetails.createAppend('a', {
-          className: 'content', textContent: post.content, href: post.content, target: '_blank',
+          className: 'content', innerHTML: post.content, href: post.content, target: '_blank',
         });
       }
     } else {
@@ -130,7 +129,7 @@ console.log(posts);
 
     // Username
     const userDiv = metaDiv.createAppend('div', { className: 'user' });
-    const userLink = userDiv.createAppend('a', { className: 'user-link', href: '#' });
+    const userLink = userDiv.createAppend('a', { className: 'user-link' });
 
     userLink.createAppend('i', { className: 'fa-solid fa-user' });
     userLink.createAppend('span', { className: 'username', textContent: post.username });
@@ -178,18 +177,22 @@ function sendVote(postId, type) {
   fetchFunctions().getData('/check-auth').then((userResult) => {
     const userId = (userResult.user) ? userResult.user.id : null;
     postFunctions.addUpvote({ userId, postId, type })
-      .then(() => {
+      .then(() => fetchFunctions().getData(`/api/v1/posts/${postId}`))
+      .then((post) => {
         const currentPost = document.getElementById(postId);
-        if (window.location.href.includes('comments')) {
-          const split = window.location.href.split('/');
-          const id = split[split.length - 2];
-          postFunctions.singlePost(id);
+        const voteNumber = currentPost.querySelector('.vote-number');
+        if (post.votes < 0) {
+          voteNumber.textContent = 0;
         } else {
-          postFunctions.allPosts();
+          voteNumber.textContent = post.votes;
         }
-        window.scrollTo(0, currentPost.offsetTop);
-      })
-      .catch(() => {
+        if (post.votes > 0) {
+          currentPost.querySelector('.upvote').style.color = '#0079d3';
+          currentPost.querySelector('.downvote').style.color = 'black';
+        } else if (post.votes < 0) {
+          currentPost.querySelector('.downvote').style.color = 'red';
+          currentPost.querySelector('.upvote').style.color = 'black';
+        }
       });
   }).catch(() => {
     openThisModal('login');

@@ -21,7 +21,7 @@ function fetchFunctions() {
       else if (res.status === 400 || res.status === 403) {
         throw JSON.stringify(new CustomError(res.message, res.errors));
       } else if (res.message !== 'No data found') {
-        changeUsername(res.user);
+        // changeUsername(res.user);
         return res.result || res;
       }
       return null;
