@@ -59,7 +59,7 @@ const commentFunctions = {
         className: 'comment-date', textContent: timeSince(new Date(comment.created_at)),
       });
 
-      commentItemDiv.createAppend('div', { className: 'comment-content', textContent: comment.content });
+      commentItemDiv.createAppend('div', { className: 'comment-content', innerHTML: comment.content });
     });
   },
 };
