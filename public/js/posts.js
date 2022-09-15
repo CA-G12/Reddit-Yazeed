@@ -109,7 +109,7 @@ function renderPosts(posts) {
         });
       }
     } else {
-      postDetails.createAppend('p', { className: 'content', textContent: post.content });
+      postDetails.createAppend('p', { className: 'content', innerHTML: post.content });
     }
     if (validateUrl(`${post.image_url}`)) {
       const postImgDiv = postDetails.createAppend('div', { className: 'post-img' });
